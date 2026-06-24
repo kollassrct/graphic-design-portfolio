@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ram Charan — Graphic Designer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #0a1628; background: linear-gradient(135deg, #c8dff8 0%, #daeafa 30%, #eaf3fd 60%, #f0f8ff 100%); background-attachment: fixed; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: center; gap: 20px; padding: 10px 16px; background: rgba(218,234,250,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(10,22,40,0.08); }
+    .nav-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: none; cursor: pointer; padding: 4px 2px; }
+    .nav-num, .nav-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: #9ab5cc; transition: color 0.2s; }
+    .nav-dot { width: 8px; height: 4px; border-radius: 99px; background: #aac5e0; transition: width 0.3s, background 0.3s; }
+    .nav-btn.active .nav-num, .nav-btn.active .nav-label { color: #0a1628; }
+    .nav-btn.active .nav-dot { width: 28px; background: #0a1628; }
+    @media (max-width: 480px) { .nav-num, .nav-label { display: none; } nav { gap: 10px; } }
+    .wrap { max-width: 1152px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    @media (min-width: 640px) { section { padding: 6rem 2rem; } }
+    .sec-label { display: flex; align-items: center; gap: 16px; margin-bottom: 2rem; }
+    .sec-label .idx { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; color: rgba(0,0,0,0.4); }
+    .sec-label .line { flex: 1; height: 2px; background: rgba(0,0,0,0.12); }
+    .sec-label h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.5rem,4vw,2.4rem); font-weight: 900; text-transform: uppercase; color: #0a1628; letter-spacing: 0.02em; }
+    #cover { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 80px; position: relative; overflow: hidden; }
+    .cover-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Barlow Condensed', sans-serif; font-size: clamp(8rem,30vw,22rem); font-weight: 900; text-transform: uppercase; color: rgba(10,22,40,0.05); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; }
+    .cover-card { position: relative; display: flex; flex-direction: column; align-items: center; padding: 2.5rem; width: 90%; max-width: 680px; background: rgba(255,255,255,0.6); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 8px 60px rgba(10,22,40,0.1); }
+    @media (min-width: 640px) { .cover-card { padding: 3.5rem 5rem; } }
+    .cover-name { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; color: #2d6be4; margin-bottom: 1.25rem; }
+    .cover-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(4.5rem,16vw,10rem); font-weight: 900; text-transform: uppercase; color: #0a1628; line-height: 0.88; }
+    .cover-hr { width: 100%; height: 1px; background: rgba(10,22,40,0.15); margin: 1.5rem 0; }
+    .cover-sub { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #888; }
+    .scroll-cue { margin-top: 3.5rem; display: flex; flex-direction: column; align-items: center; gap: 6px; animation: bounce 2s infinite; }
+    .scroll-cue span { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; color: rgba(0,0,0,0.35); }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+    .about-card { position: relative; overflow: hidden; border-radius: 20px; box-shadow: 0 20px 80px rgba(10,22,40,0.35); min-height: 480px; }
+    .about-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.72) contrast(1.05); }
+    .about-ov1 { position: absolute; inset: 0; background: linear-gradient(to right, rgba(5,12,28,0.96) 0%, rgba(5,12,28,0.7) 38%, rgba(5,12,28,0.15) 62%, rgba(5,12,28,0.55) 100%); }
+    .about-ov2 { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,12,28,0.85) 0%, transparent 40%); }
+    .about-inner { position: relative; z-index: 10; display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
+    @media (max-width: 767px) { .about-inner { grid-template-columns: 1fr; } .about-r { display: none; } }
+    .about-l { display: flex; flex-direction: column; justify-content: center; padding: 3rem 2rem 3rem 2.5rem; }
+    @media (min-width: 640px) { .about-l { padding: 3rem 3rem 3rem 3.5rem; } }
+    .a-tag { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; color: #4a9fd4; margin-bottom: 1.25rem; }
+    .a-hello { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.4rem,5.5vw,3.6rem); font-weight: 900; text-transform: uppercase; color: #f5c842; line-height: 1; }
+    .a-name { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.6rem,6vw,4rem); font-weight: 900; text-transform: uppercase; color: #fff; line-height: 1; margin-bottom: 1.5rem; }
+    .a-bio { font-size: 14px; line-height: 1.75; color: #a8bfd4; max-width: 360px; }
+    .about-r { display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem 2.5rem 3rem 2rem; gap: 2rem; align-items: flex-end; }
+    @media (min-width: 640px) { .about-r { padding: 3rem 3.5rem 3rem 3rem; } }
+    .sk-t { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; color: #f5c842; margin-bottom: 1rem; }
+    .sk-grp ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .sk-grp li { font-size: 14px; color: #c8dcea; text-align: right; display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+    .sk-dot { width: 4px; height: 4px; border-radius: 50%; background: #4a9fd4; flex-shrink: 0; }
+    .slide-hdr { position: relative; overflow: hidden; border-radius: 16px; min-height: 220px; background: #0b1120; box-shadow: 0 8px 40px rgba(10,22,40,0.2); margin-bottom: 16px; }
+    .slide-glow { position: absolute; inset: 0; pointer-events: none; }
+    .slide-cnt { position: relative; z-index: 10; padding: 3rem 2.5rem; }
+    @media (min-width: 640px) { .slide-cnt { padding: 3.5rem 4rem; } }
+    .slide-pre { font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; font-weight: 600; margin-bottom: 0.75rem; }
+    .slide-ttl { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3rem,9vw,6rem); font-weight: 900; text-transform: uppercase; color: #fff; letter-spacing: -0.01em; line-height: 0.9; }
+    .brief-card { border-radius: 16px; overflow: hidden; background: rgba(255,255,255,0.6); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 4px 24px rgba(10,22,40,0.07); margin-bottom: 16px; }
+    .brief-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 767px) { .brief-grid { grid-template-columns: 1fr; } }
+    .brief-l { padding: 2.5rem; border-right: 1px solid rgba(10,22,40,0.08); }
+    .brief-r { padding: 2.5rem; }
+    @media (max-width: 767px) { .brief-l { border-right: none; border-bottom: 1px solid rgba(10,22,40,0.08); } }
+    .b-tag { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; margin-bottom: 1rem; }
+    .b-h { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 900; text-transform: uppercase; color: #0a1628; line-height: 1; margin-bottom: 1.25rem; }
+    .b-p { font-size: 14px; line-height: 1.75; color: #3a5070; }
+    .b-p+.b-p { margin-top: 12px; }
+    .works-lbl { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; color: #2d6be4; margin-bottom: 1.25rem; }
+    .g4 { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    @media (min-width: 768px) { .g4 { grid-template-columns: repeat(4,1fr); } }
+    .g3 { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    @media (min-width: 768px) { .g3 { grid-template-columns: repeat(3,1fr); } }
+    .wc { border-radius: 12px; overflow: hidden; box-shadow: 0 2px 16px rgba(10,22,40,0.1); border: 1px solid rgba(255,255,255,0.8); display: flex; flex-direction: column; }
+    .wc-img { overflow: hidden; flex-shrink: 0; }
+    .wc-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .wc:hover .wc-img img { transform: scale(1.06); }
+    .wc-lbl { padding: 10px 14px; background: rgba(255,255,255,0.82); backdrop-filter: blur(8px); }
+    .wc-type { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+    .wc-name { font-size: 13px; font-weight: 600; color: #0a1628; line-height: 1.3; }
+    .proc-list { display: flex; flex-direction: column; gap: 20px; }
+    .proc-item { display: flex; gap: 16px; }
+    .proc-num { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 900; color: #dbeafe; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .proc-t { font-size: 14px; font-weight: 600; color: #0a1628; margin-bottom: 4px; }
+    .proc-d { font-size: 12px; line-height: 1.6; color: #4a6080; }
+    .handles { display: flex; flex-direction: column; gap: 16px; }
+    .handle-a { display: flex; align-items: center; gap: 12px; text-decoration: none; transition: opacity 0.2s; }
+    .handle-a:hover { opacity: 0.65; }
+    .h-ico { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .h-tag { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+    .h-name { font-size: 14px; font-weight: 500; color: #0a1628; }
+    .delivs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+    .deliv { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #0a1628; }
+    .contact-card { border-radius: 20px; overflow: hidden; background: #0b1120; box-shadow: 0 20px 80px rgba(10,22,40,0.3); }
+    .ct-top { position: relative; padding: 3.5rem 2.5rem 2rem; text-align: center; }
+    @media (min-width: 640px) { .ct-top { padding: 3.5rem 4rem 2rem; } }
+    .ct-top::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(45,107,228,0.12) 0%, transparent 60%); pointer-events: none; }
+    .ct-pre { font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; font-weight: 600; color: #4a9fd4; margin-bottom: 1rem; }
+    .ct-h { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.8rem,8vw,5.5rem); font-weight: 900; text-transform: uppercase; color: #fff; letter-spacing: -0.01em; line-height: 0.9; margin-bottom: 1rem; }
+    .ct-h span { color: #2d6be4; }
+    .ct-sub { font-size: 14px; color: #4a6080; }
+    .ct-div { height: 1px; background: rgba(255,255,255,0.07); margin: 0 2.5rem; }
+    .ct-tiles { display: grid; grid-template-columns: repeat(3,1fr); }
+    @media (max-width: 640px) { .ct-tiles { grid-template-columns: 1fr; } }
+    .ct-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 2.5rem 2rem; text-decoration: none; border-right: 1px solid rgba(255,255,255,0.07); transition: background 0.2s; }
+    .ct-tile:last-child { border-right: none; }
+    .ct-tile:hover { background: rgba(255,255,255,0.04); }
+    .ct-ico { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+    .ct-tile:hover .ct-ico { transform: scale(1.1); }
+    .ct-tag { font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+    .ct-val { font-size: 14px; font-weight: 500; color: #fff; text-align: center; }
+    footer { text-align: center; padding: 2rem 1rem; background: rgba(255,255,255,0.35); border-top: 1px solid rgba(10,22,40,0.08); }
+    footer p { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; color: #7090b0; }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <button class="nav-btn active" data-target="cover" onclick="navTo('cover')"><span class="nav-num">01</span><span class="nav-dot"></span><span class="nav-label">Cover</span></button>
+  <button class="nav-btn" data-target="about" onclick="navTo('about')"><span class="nav-num">02</span><span class="nav-dot"></span><span class="nav-label">About</span></button>
+  <button class="nav-btn" data-target="logos" onclick="navTo('logos')"><span class="nav-num">03</span><span class="nav-dot"></span><span class="nav-label">Logos</span></button>
+  <button class="nav-btn" data-target="social" onclick="navTo('social')"><span class="nav-num">04</span><span class="nav-dot"></span><span class="nav-label">Social</span></button>
+  <button class="nav-btn" data-target="print" onclick="navTo('print')"><span class="nav-num">05</span><span class="nav-dot"></span><span class="nav-label">Print</span></button>
+  <button class="nav-btn" data-target="contact" onclick="navTo('contact')"><span class="nav-num">06</span><span class="nav-dot"></span><span class="nav-label">Contact</span></button>
+</nav>
+
+<section id="cover">
+  <span class="cover-bg">PORTFOLIO</span>
+  <div class="cover-card">
+    <p class="cover-name">Ram Charan</p>
+    <h1 class="cover-title">PORT<br>FOLIO</h1>
+    <div class="cover-hr"></div>
+    <p class="cover-sub">Graphic Design &nbsp;•&nbsp; 2026</p>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><svg width="16" height="22" viewBox="0 0 16 22" fill="none"><path d="M8 3v16M2 13l6 6 6-6" stroke="rgba(0,0,0,0.4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</section>
+
+<section id="about">
+  <div class="wrap" style="max-width:80rem;">
+    <div class="about-card">
+      <img class="about-photo" src="src/imports/Gemini_Generated_Image_e3x65ge3x65ge3x6.png" alt="Ram Charan" />
+      <div class="about-ov1"></div><div class="about-ov2"></div>
+      <div class="about-inner">
+        <div class="about-l">
+          <p class="a-tag">Graphic Designer</p>
+          <p class="a-hello">Hello</p>
+          <p class="a-name">I'M RAM CHARAN</p>
+          <p class="a-bio">I'm a passionate graphic designer dedicated to crafting bold, impactful visuals that leave a lasting impression. From Logos and social media content to print and apparel, I approach every project as an opportunity to push creative boundaries and deliver something truly memorable for the client.<br><br>With over 5 years of experience as a Graphic Designer, I kept on evolving from Traditional Designing to Modern Designing with AI Finishing.</p>
+        </div>
+        <div class="about-r">
+          <div class="sk-grp"><p class="sk-t">Core Expertise</p><ul><li><span class="sk-dot"></span>Logo &amp; Brand Identity</li><li><span class="sk-dot"></span>Social Media Design</li><li><span class="sk-dot"></span>Print Design</li><li><span class="sk-dot"></span>Apparel Design</li><li><span class="sk-dot"></span>AI Finishing</li></ul></div>
+          <div class="sk-grp"><p class="sk-t">Software</p><ul><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Adobe Premiere Pro</li><li>Canva</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logos"><div class="wrap">
+  <div class="sec-label"><span class="idx">03</span><div class="line"></div><h2>Logo &amp; Brand Identity</h2></div>
+  <div class="slide-hdr"><div class="slide-glow" style="background:radial-gradient(ellipse at 80% 50%,rgba(245,200,66,.08) 0%,transparent 60%);"></div><div class="slide-cnt"><p class="slide-pre" style="color:#f5c842;">Crafting Identity</p><h2 class="slide-ttl">LOGO &amp;<br><span style="color:#f5c842;">BRANDING</span></h2></div></div>
+  <div class="brief-card"><div class="brief-grid">
+    <div class="brief-l"><p class="b-tag" style="color:#2d6be4;">What I Do</p><h3 class="b-h">More Than a Mark —<br>A Story in a Symbol</h3><p class="b-p">A great logo is the foundation of a brand — it communicates who you are before a single word is read. I design logos that are distinctive, scalable, and built to last. Every curve, colour, and typeface is chosen with purpose, not decoration.</p><p class="b-p">Beyond the mark, branding is the full visual language of a business — from colour systems and typography to business cards, packaging, and social templates.</p></div>
+    <div class="brief-r"><p class="b-tag" style="color:#2d6be4;">My Process</p><div class="proc-list"><div class="proc-item"><span class="proc-num">01</span><div><p class="proc-t">Discovery &amp; Research</p><p class="proc-d">Understanding your business, audience, and vision before a single sketch is made.</p></div></div><div class="proc-item"><span class="proc-num">02</span><div><p class="proc-t">Concept Development</p><p class="proc-d">Exploring wordmarks, lettermarks, and emblems to find the right direction.</p></div></div><div class="proc-item"><span class="proc-num">03</span><div><p class="proc-t">Refinement &amp; Colour</p><p class="proc-d">Polishing the concept and building a colour palette that reinforces brand personality.</p></div></div><div class="proc-item"><span class="proc-num">04</span><div><p class="proc-t">Brand System Delivery</p><p class="proc-d">Production-ready files plus a full brand guide covering logo usage, colours, and type.</p></div></div></div></div>
+  </div></div>
+  <p class="works-lbl">Selected Works</p>
+  <div class="g4">
+    <div class="wc"><div class="wc-img" style="aspect-ratio:1/1;background:#f5ede3;"><img src="src/imports/1.png" alt="Surya's Cafe" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#4a7cc4;">Brand Identity</p><p class="wc-name">Surya's Cafe</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:1/1;background:#dce9fb;"><img src="src/imports/2.png" alt="M&amp;M Clothing" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#4a7cc4;">Wordmark</p><p class="wc-name">M&amp;M Clothing Merchant</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:1/1;background:#fff;"><img src="src/imports/3.png" alt="Aatranyx Solutions" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#4a7cc4;">Corporate Logo</p><p class="wc-name">Aatranyx Solutions</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:1/1;background:#111;"><img src="src/imports/4.png" alt="Eventzy" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#4a7cc4;">Monogram</p><p class="wc-name">Eventzy</p></div></div>
+  </div>
+</div></section>
+
+<section id="social"><div class="wrap">
+  <div class="sec-label"><span class="idx">04</span><div class="line"></div><h2>Social Media Post Design</h2></div>
+  <div class="slide-hdr"><div class="slide-glow" style="background:radial-gradient(ellipse at 20% 50%,rgba(45,107,228,.18) 0%,transparent 55%);"></div><div class="slide-cnt"><p class="slide-pre" style="color:#4a9fd4;">Content Creation</p><h2 class="slide-ttl">SOCIAL<br><span style="color:#2d6be4;">MEDIA</span></h2></div></div>
+  <div class="brief-card"><div class="brief-grid">
+    <div class="brief-l"><p class="b-tag" style="color:#2d6be4;">What I Do</p><h3 class="b-h">Posts That Stop<br>The Scroll</h3><p class="b-p">I design scroll-stopping social media content — event posters, announcements, celebration posts, and branded creatives — tailored for each platform's audience and aesthetic.</p><p class="b-p">I currently handle Instagram content for college, club, and business pages — managing everything from concept and design to a consistent visual identity across each handle.</p></div>
+    <div class="brief-r"><p class="b-tag" style="color:#2d6be4;">Instagram Handles I Manage</p><div class="handles">
+      <a class="handle-a" href="https://www.instagram.com/__oitoguys__/" target="_blank" rel="noopener"><span class="h-ico" style="background:rgba(225,48,108,.12);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#e1306c" stroke="none"/></svg></span><div><p class="h-tag" style="color:#e1306c;">Content Making</p><p class="h-name">@__oitoguys__</p></div></a>
+      <a class="handle-a" href="https://www.instagram.com/mrce_official_/" target="_blank" rel="noopener"><span class="h-ico" style="background:rgba(45,107,228,.12);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2d6be4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#2d6be4" stroke="none"/></svg></span><div><p class="h-tag" style="color:#2d6be4;">College</p><p class="h-name">@mrce_official_</p></div></a>
+      <a class="handle-a" href="https://www.instagram.com/innovista_hub.ds/" target="_blank" rel="noopener"><span class="h-ico" style="background:rgba(139,92,246,.12);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#8b5cf6" stroke="none"/></svg></span><div><p class="h-tag" style="color:#8b5cf6;">Club</p><p class="h-name">@innovista_hub.ds</p></div></a>
+      <a class="handle-a" href="https://www.instagram.com/mudramedia.printingsolutions/" target="_blank" rel="noopener"><span class="h-ico" style="background:rgba(245,158,11,.12);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#f59e0b" stroke="none"/></svg></span><div><p class="h-tag" style="color:#f59e0b;">Business Page</p><p class="h-name">@mudramedia.printingsolutions</p></div></a>
+    </div></div>
+  </div></div>
+  <p class="works-lbl">Selected Works</p>
+  <div class="g3">
+    <div class="wc"><div class="wc-img" style="aspect-ratio:4/5;background:#0b1120;"><img src="src/imports/WhatsApp_Image_2026-06-24_at_2.44.21_AM__1_.jpeg" alt="Gokarna Clicks" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#e1306c;">Content Making</p><p class="wc-name">Gokarna Clicks</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:4/5;background:#0b1120;"><img src="src/imports/WhatsApp_Image_2026-06-24_at_2.44.21_AM__2_.jpeg" alt="Hack-N-Win" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#2d6be4;">College</p><p class="wc-name">Hack-N-Win Hackathon</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:4/5;background:#0b1120;"><img src="src/imports/WhatsApp_Image_2026-06-24_at_2.44.21_AM.jpeg" alt="Teachers Day" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#2d6be4;">College</p><p class="wc-name">Happy Teachers' Day</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:4/5;background:#0b1120;"><img src="src/imports/GS_Workshop_insta_post.jpg" alt="Gender Sensitization" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#2d6be4;">College</p><p class="wc-name">Gender Sensitization Seminar</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:4/5;background:#0b1120;"><img src="src/imports/WhatsApp_Image_2026-06-24_at_2.44.22_AM.jpeg" alt="Mudra Media" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#f59e0b;">Business Page</p><p class="wc-name">Mudra Media – 6 Years</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:4/5;background:#0b1120;"><img src="src/imports/WhatsApp_Image_2026-06-24_at_2.44.21_AM__3_.jpeg" alt="Birthday Post" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#8b5cf6;">Club</p><p class="wc-name">Birthday Post – Dr. J Gladson</p></div></div>
+  </div>
+</div></section>
+
+<section id="print"><div class="wrap">
+  <div class="sec-label"><span class="idx">05</span><div class="line"></div><h2>Print Design</h2></div>
+  <div class="slide-hdr"><div class="slide-glow" style="background:radial-gradient(ellipse at 15% 50%,rgba(16,185,129,.14) 0%,transparent 55%);"></div><div class="slide-cnt"><p class="slide-pre" style="color:#10b981;">Tangible Design</p><h2 class="slide-ttl">PRINT<br><span style="color:#10b981;">DESIGN</span></h2></div></div>
+  <div class="brief-card"><div class="brief-grid">
+    <div class="brief-l"><p class="b-tag" style="color:#10b981;">What I Do</p><h3 class="b-h">Design That<br>You Can Hold</h3><p class="b-p">Print design is where creativity meets the physical world. I craft precise, production-ready layouts for a wide range of printed materials — from business cards and brochures to book covers and event collateral.</p><p class="b-p">Every print piece is designed with real-world constraints in mind — bleed, safe zones, CMYK colour accuracy, and print-ready file formats.</p></div>
+    <div class="brief-r"><p class="b-tag" style="color:#10b981;">Print Deliverables</p><div class="delivs"><div class="deliv"><span>📖</span> Book Covers</div><div class="deliv"><span>📄</span> Brochures &amp; Flyers</div><div class="deliv"><span>💼</span> Business Cards</div><div class="deliv"><span>🪪</span> ID &amp; Event Cards</div><div class="deliv"><span>🖼️</span> Posters &amp; Banners</div><div class="deliv"><span>📦</span> Packaging Design</div></div></div>
+  </div></div>
+  <p class="works-lbl">Selected Works</p>
+  <div class="g4">
+    <div class="wc"><div class="wc-img" style="aspect-ratio:1/1;background:#e8f2fc;"><img src="src/imports/Untitled_design__2_.jpg" alt="The Pol Houses" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#10b981;">Book Cover</p><p class="wc-name">The Pol Houses</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:1/1;background:#e8f2fc;"><img src="src/imports/Untitled_design__3_.jpg" alt="Thynk Unlimited" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#10b981;">Trifold Brochure</p><p class="wc-name">Thynk Unlimited</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:1/1;background:#e8f2fc;"><img src="src/imports/Untitled_design__4_.jpg" alt="Aatranyx Solutions" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#10b981;">Business Card</p><p class="wc-name">Aatranyx Solutions</p></div></div>
+    <div class="wc"><div class="wc-img" style="aspect-ratio:1/1;background:#e8f2fc;"><img src="src/imports/Untitled_design__5_.jpg" alt="Visista 2K26" loading="lazy"></div><div class="wc-lbl"><p class="wc-type" style="color:#10b981;">Event ID Card</p><p class="wc-name">Visista 2K26</p></div></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="sec-label"><span class="idx">06</span><div class="line"></div><h2>Contact</h2></div>
+  <div class="contact-card">
+    <div class="ct-top">
+      <p class="ct-pre">Let's Work Together</p>
+      <h2 class="ct-h">Let's Create<br><span>Something Impactful</span></h2>
+      <p class="ct-sub">Drop a message — I'll get back to you as soon as possible.</p>
+    </div>
+    <div class="ct-div"></div>
+    <div class="ct-tiles">
+      <a class="ct-tile" href="mailto:kollassrct@gmail.com"><span class="ct-ico" style="background:rgba(45,107,228,.15);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d6be4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></span><div><p class="ct-tag" style="color:#2d6be4;">Email</p><p class="ct-val">kollassrct@gmail.com</p></div></a>
+      <a class="ct-tile" href="https://www.instagram.com/kolla_ssrct/" target="_blank" rel="noopener"><span class="ct-ico" style="background:rgba(225,48,108,.15);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#e1306c" stroke="none"/></svg></span><div><p class="ct-tag" style="color:#e1306c;">Instagram</p><p class="ct-val">@kolla_ssrct</p></div></a>
+      <a class="ct-tile" href="https://wa.me/917780627515" target="_blank" rel="noopener" style="border-right:none;"><span class="ct-ico" style="background:rgba(37,211,102,.15);"><svg width="20" height="20" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span><div><p class="ct-tag" style="color:#25d366;">WhatsApp</p><p class="ct-val">+91 77806 27515</p></div></a>
+    </div>
+  </div>
+</div></section>
+
+<footer><p>© 2026 Ram Charan — All Rights Reserved</p></footer>
+
+<script>
+  const IDS=['cover','about','logos','social','print','contact'];
+  function updateNav(){let c=IDS[0];for(const id of IDS){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=66)c=id;}document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.target===c));}
+  window.addEventListener('scroll',updateNav,{passive:true});
+  updateNav();
+  function navTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+</script>
+</body>
+</html>
