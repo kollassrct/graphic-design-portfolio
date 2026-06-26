@@ -37,7 +37,7 @@
     .scroll-cue span { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; color: rgba(0,0,0,0.35); }
     @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
     .about-card { position: relative; overflow: hidden; border-radius: 20px; box-shadow: 0 20px 80px rgba(10,22,40,0.35); min-height: 480px; }
-    .about-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.72) contrast(1.05); }
+    .about-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; filter: brightness(0.72) contrast(1.05); }
     .about-ov1 { position: absolute; inset: 0; background: linear-gradient(to right, rgba(5,12,28,0.96) 0%, rgba(5,12,28,0.7) 38%, rgba(5,12,28,0.15) 62%, rgba(5,12,28,0.55) 100%); }
     .about-ov2 { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,12,28,0.85) 0%, transparent 40%); }
     .about-inner { position: relative; z-index: 10; display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
@@ -120,6 +120,7 @@
       .cover-title { font-size: clamp(2.8rem, 12vw, 4rem); }
       .scroll-cue { margin-top: 2rem; }
       .about-card { min-height: auto; }
+      .about-photo { object-position: 72% center; transform: scale(1.03); }
       .about-inner { grid-template-columns: 1fr; min-height: auto; }
       .about-l { padding: 2rem 1.25rem 1.25rem; }
       .about-r { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 0 1.25rem 2rem; gap: 1.25rem; }
